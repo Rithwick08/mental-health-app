@@ -1,0 +1,64 @@
+/* 🎨 General Colors & Gradients */
+.bg-gradient-hero {
+    background: linear-gradient(135deg, #6c63ff 0%, #00b4d8 100%);
+  }
+  
+  .bg-gradient-accent {
+    background: linear-gradient(120deg, #b388eb, #f7aef8);
+  }
+  
+  .text-warm-peach {
+    color: #ffb997;
+  }
+  
+  /* 🌟 Buttons & Effects */
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.4);
+  }
+  
+  .shadow-soft {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-glow {
+    background: linear-gradient(135deg, #6c63ff, #00b4d8);
+    color: white !important;
+    border: none;
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-glow:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+  }
+  
+  /* 🧠 Hero Section */
+  .hero-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+  }
+  
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-section > * {
+    position: relative;
+    z-index: 1;
+  }
+  /* Add this in landing.css or a shared CSS file */
+.card {
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
