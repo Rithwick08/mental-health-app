@@ -7,7 +7,7 @@ export default function JournalForm({ onAdd }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("mh_token");
-    const res = await fetch("http://localhost:4000/api/journal", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/journal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

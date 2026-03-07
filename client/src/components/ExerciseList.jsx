@@ -10,7 +10,7 @@ export default function ExerciseList() {
 
   // Fetch exercises from backend
   useEffect(() => {
-    fetch(`http://localhost:4000/api/exercises?category=${category}`)
+    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/exercises?category=${category}`)
       .then((res) => res.json())
       .then((data) => setExercises(data))
       .catch((err) => console.error("Error fetching exercises:", err));

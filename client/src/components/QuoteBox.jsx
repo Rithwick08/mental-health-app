@@ -6,7 +6,7 @@ export default function QuoteBox({ dark = false }) {
   useEffect(() => {
     async function fetchQuote() {
       try {
-        const res = await fetch("http://localhost:4000/api/quotes");
+        const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/quotes`);
         const data = await res.json();
         setQuote(data.quote);
       } catch (err) {

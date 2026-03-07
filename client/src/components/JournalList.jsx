@@ -6,7 +6,7 @@ export default function JournalList() {
   useEffect(() => {
     const fetchJournals = async () => {
       const token = localStorage.getItem("mh_token");
-      const res = await fetch("http://localhost:4000/api/journal", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/journal`, {
         headers: { "Authorization": token },
       });
       const data = await res.json();
@@ -17,7 +17,7 @@ export default function JournalList() {
 
   const deleteJournal = async (id) => {
     const token = localStorage.getItem("mh_token");
-    await fetch(`http://localhost:4000/api/journal/${id}`, {
+    await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/journal/${id}`, {
       method: "DELETE",
       headers: { "Authorization": token },
     });

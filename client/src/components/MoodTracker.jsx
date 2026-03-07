@@ -7,7 +7,7 @@ export default function MoodTracker() {
   const token = localStorage.getItem("mh_token");
 
   async function fetchMoods() {
-    const res = await fetch("http://localhost:4000/api/mood/", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/mood/`, {
   headers: { Authorization: token }
 });
     const data = await res.json();
@@ -16,7 +16,7 @@ export default function MoodTracker() {
 
   async function addMood(e) {
     e.preventDefault();
-    const res = await fetch("http://localhost:4000/api/mood/", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/mood/`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

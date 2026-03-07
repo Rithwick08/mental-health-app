@@ -51,7 +51,7 @@ export default function AICompanion() {
 
     try {
       const recentMessages = newChat.slice(-6);
-      const res = await fetch("http://localhost:4000/api/ai", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/ai`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

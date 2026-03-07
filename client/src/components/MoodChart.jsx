@@ -6,7 +6,7 @@ export default function MoodChart() {
   const token = localStorage.getItem("mh_token");
 
   async function fetchMoods() {
-    const res = await fetch("http://localhost:4000/api/mood/", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/mood/`, {
   headers: { Authorization: token }
 });
     const data = await res.json();

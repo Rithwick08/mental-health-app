@@ -5,7 +5,7 @@ export default function QuoteSection() {
   const [quote, setQuote] = useState("Loading inspirational thoughts...");
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/quotes")
+    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:4000"}/api/quotes`)
       .then(res => res.json())
       .then(data => setQuote(data.quote))
       .catch(() => setQuote("Stay strong. Every day is a new beginning."));
