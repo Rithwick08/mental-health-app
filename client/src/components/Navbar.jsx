@@ -5,9 +5,9 @@ export default function Navbar({ user, onLogout }) {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
       <div className="container-fluid">
         {/* Brand */}
-        <a className="navbar-brand fw-bold" href="/">
+        <NavLink className="navbar-brand fw-bold" to="/">
           🧠 MentiHaven
-        </a>
+        </NavLink>
 
         {/* Toggle for mobile */}
         <button
