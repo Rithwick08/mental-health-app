@@ -10,7 +10,8 @@ import JournalList from "./components/JournalList";
 import Landing from "./components/landing/Landing";
 import QuoteBox from "./components/QuoteBox";
 import ExerciseList from "./components/ExerciseList";
-import AICompanion from "./components/AICompanion"; // 👈 import AI Companion
+import AICompanion from "./components/AICompanion";
+import "./App.css";
 
 function AppContent() {
   const [user, setUser] = useState(null);
@@ -21,36 +22,28 @@ function AppContent() {
     setUser(null);
   }
 
-  // Pages where AI should NOT appear
   const hideAIOn = ["/", "/login", "/register"];
   const showAI = user && !hideAIOn.includes(location.pathname);
-
-  // Hide main navbar on landing page
   const showNavbar = location.pathname !== "/";
 
   return (
-    <>
+    <div className="mh-page-wrapper">
       {showNavbar && <Navbar user={user} onLogout={handleLogout} />}
 
-      <div className={showNavbar ? "container mt-4" : ""}>
+      <div className={showNavbar ? "container mt-4 pb-5" : ""}>
         <Routes>
-          {/* Landing Page */}
-          <Route
-            path="/"
-            element={!user ? <Landing /> : <Navigate to="/dashboard" />}
-          />
+          <Route path="/" element={!user ? <Landing /> : <Navigate to="/dashboard" />} />
 
-          {/* Auth Pages */}
           <Route
             path="/login"
             element={
               !user ? (
-                <div className="card p-4 shadow">
-                  <LoginForm onLogin={setUser} />
+                <div className="mh-auth-page">
+                  <div className="mh-auth-card card">
+                    <LoginForm onLogin={setUser} />
+                  </div>
                 </div>
-              ) : (
-                <Navigate to="/dashboard" />
-              )
+              ) : <Navigate to="/dashboard" />
             }
           />
 
@@ -58,55 +51,54 @@ function AppContent() {
             path="/register"
             element={
               !user ? (
-                <div className="card p-4 shadow">
-                  <RegisterForm onRegister={() => {}} />
+                <div className="mh-auth-page">
+                  <div className="mh-auth-card card">
+                    <RegisterForm onRegister={() => { }} />
+                  </div>
                 </div>
-              ) : (
-                <Navigate to="/dashboard" />
-              )
+              ) : <Navigate to="/dashboard" />
             }
           />
 
-          {/* Dashboard */}
           <Route
             path="/dashboard"
             element={
               user ? (
                 <div>
-                  <h2 className="mb-4">MentiHaven Dashboard</h2>
-                  <div className="row">
-                    <div className="col-md-6 mb-4">
-                      <MoodTracker />
-                    </div>
-                    <div className="col-md-6 mb-4">
-                      <MoodChart />
-                    </div>
+                  <div className="mb-4">
+                    <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", color: "var(--forest)" }}>
+                      Welcome back, {user.name} 🌿
+                    </h2>
+                    <p style={{ color: "var(--text-medium)", marginTop: "-0.25rem" }}>How are you feeling today?</p>
+                  </div>
+                  <div className="mh-dashboard-grid mb-4">
+                    <MoodTracker />
+                    <MoodChart />
                   </div>
                   <QuoteBox />
                 </div>
-              ) : (
-                <Navigate to="/" />
-              )
+              ) : <Navigate to="/" />
             }
           />
 
-          {/* Journal */}
           <Route
             path="/journal"
             element={
               user ? (
                 <div>
-                  <h2 className="mb-4">My Journal</h2>
+                  <div className="mb-4">
+                    <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", color: "var(--forest)" }}>
+                      My Journal 📓
+                    </h2>
+                    <p style={{ color: "var(--text-medium)", marginTop: "-0.25rem" }}>A private space to reflect and grow.</p>
+                  </div>
                   <JournalForm onAdd={(entry) => console.log("New Journal:", entry)} />
                   <JournalList />
                 </div>
-              ) : (
-                <Navigate to="/" />
-              )
+              ) : <Navigate to="/" />
             }
           />
 
-          {/* Exercises */}
           <Route
             path="/exercises"
             element={user ? <ExerciseList /> : <Navigate to="/" />}
@@ -114,9 +106,8 @@ function AppContent() {
         </Routes>
       </div>
 
-      {/* ✅ Floating AI Companion (visible only when logged in & not on auth pages) */}
       {showAI && <AICompanion />}
-    </>
+    </div>
   );
 }
 

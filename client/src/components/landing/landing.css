@@ -1,64 +1,293 @@
-/* 🎨 General Colors & Gradients */
-.bg-gradient-hero {
-    background: linear-gradient(135deg, #6c63ff 0%, #00b4d8 100%);
+/* ============================================
+   LANDING PAGE — MentiHaven
+   ============================================ */
+
+/* ── Landing Nav ── */
+.mh-landing-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.mh-landing-nav.scrolled {
+  background: rgba(251, 247, 240, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(107, 143, 113, 0.15);
+  padding: 0.7rem 2rem;
+}
+
+.mh-nav-brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--forest);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.01em;
+}
+
+.mh-nav-brand svg {
+  color: var(--sage);
+}
+
+/* ── Hero ── */
+.mh-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--cream);
+}
+
+.mh-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 75% 50%, rgba(107, 143, 113, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(74, 139, 140, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 80% 10%, rgba(200, 222, 201, 0.25) 0%, transparent 60%);
+}
+
+.mh-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.mh-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--sage-bg);
+  border: 1px solid var(--sage-mist);
+  border-radius: 50px;
+  padding: 0.35rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--sage);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+
+.mh-hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 600;
+  color: var(--forest);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+
+.mh-hero h1 em {
+  font-style: italic;
+  color: var(--sage);
+}
+
+.mh-hero-lead {
+  font-size: 1.05rem;
+  color: var(--text-medium);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+
+.mh-hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.4s both;
+}
+
+.mh-hero-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mh-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.mh-hero-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--cream) 0%, rgba(251, 247, 240, 0.4) 40%, transparent 100%);
+  z-index: 2;
+}
+
+/* ── Quote Band ── */
+.mh-quote-band {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--sage) 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mh-quote-band::before {
+  content: '\201C';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18rem;
+  color: rgba(255, 255, 255, 0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.mh-quote-band blockquote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ── Features ── */
+.mh-features {
+  padding: 6rem 0;
+  background: var(--cream);
+}
+
+.mh-section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sage);
+  margin-bottom: 0.75rem;
+}
+
+.mh-section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--forest);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.mh-feature-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  height: 100%;
+}
+
+.mh-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--sage-mist);
+}
+
+.mh-feature-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--sage-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.mh-feature-card h5 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--forest);
+  margin-bottom: 0.5rem;
+}
+
+.mh-feature-card p {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── CTA Section ── */
+.mh-cta {
+  padding: 6rem 2rem;
+  background: var(--sage-bg);
+  text-align: center;
+}
+
+.mh-cta h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--forest);
+  margin-bottom: 1rem;
+}
+
+.mh-cta p {
+  color: var(--text-medium);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+/* ── Footer ── */
+.mh-footer {
+  background: var(--forest);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.mh-footer strong {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--sage-mist);
+  font-size: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .mh-hero-image {
+    display: none;
   }
-  
-  .bg-gradient-accent {
-    background: linear-gradient(120deg, #b388eb, #f7aef8);
+
+  .mh-hero-content {
+    max-width: 100%;
   }
-  
-  .text-warm-peach {
-    color: #ffb997;
+
+  .mh-landing-nav {
+    padding: 1rem;
   }
-  
-  /* 🌟 Buttons & Effects */
-  .shadow-glow {
-    box-shadow: 0 0 20px rgba(108, 99, 255, 0.4);
+
+  .mh-landing-nav.scrolled {
+    padding: 0.75rem 1rem;
   }
-  
-  .shadow-soft {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .btn-glow {
-    background: linear-gradient(135deg, #6c63ff, #00b4d8);
-    color: white !important;
-    border: none;
-    box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
-    transition: all 0.3s ease;
-  }
-  
-  .btn-glow:hover {
-    transform: translateY(-3px);
-    opacity: 0.9;
-  }
-  
-  /* 🧠 Hero Section */
-  .hero-section {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-    padding: 120px 20px;
-  }
-  
-  .hero-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  .hero-section > * {
-    position: relative;
-    z-index: 1;
-  }
-  /* Add this in landing.css or a shared CSS file */
-.card {
-    animation: fadeIn 0.8s ease-in-out;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+}
