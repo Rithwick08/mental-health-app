@@ -123,7 +123,7 @@ export default function Navbar({ user, onLogout }) {
                   color: isActive ? 'var(--sage)' : 'var(--text-medium)',
                 })}
               >
-                🧠 Stress Checkup
+                Stress Checkup
               </NavLink>
 
               <div style={{ borderLeft: '1px solid var(--sage-mist)', height: '24px', margin: '0 0.5rem' }} />
@@ -131,7 +131,6 @@ export default function Navbar({ user, onLogout }) {
               {/* Theme Toggle */}
               <button onClick={toggleTheme} style={themeToggleStyle} title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
                 <span style={{ fontSize: '1rem', lineHeight: 1 }}>{isDark ? '☀️' : '🌙'}</span>
-                <span>{isDark ? 'Light' : 'Dark'}</span>
               </button>
 
               <div style={{ borderLeft: '1px solid var(--sage-mist)', height: '24px', margin: '0 0.25rem' }} />

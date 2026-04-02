@@ -10,7 +10,9 @@ MentiHaven is a comprehensive full-stack Digital Mental Health Support System bu
 - **Mindfulness Exercises**: Access therapeutic exercises and grounding techniques.
 - **Daily Quotes**: Get inspirational and motivational quotes every day to boost your mood.
 - **AI Companion**: Chat with an AI assistant powered by OpenAI/Groq for personalized coping mechanisms and mental health support.
+- **AI Stress Checkup**: Take a clinical assessment that feeds into a trained Machine Learning model (RandomForest) to dynamically gauge stress probabilities and provide actionable prescriptions.
 - **Dashboard Overview**: A centralized dashboard to visualize your mood history and journal entries using interactive charts.
+- **Layered Dark UI**: A modern, calming, responsive interface utilizing deep slate aesthetics and glassmorphic glowing elements.
 
 ## 🛠️ Technology Stack
 
@@ -27,6 +29,11 @@ MentiHaven is a comprehensive full-stack Digital Mental Health Support System bu
 - JSON Web Tokens (JWT) for authentication
 - Bcrypt.js for password hashing
 - OpenAI / Groq APIs for AI features
+
+**Machine Learning / Python Microservice:**
+- Python 3
+- Flask
+- Scikit-learn, Pandas, Joblib
 
 ## ⚙️ Installation & Setup
 
@@ -81,6 +88,16 @@ npm start
 ```
 *The React app will open in your browser at http://localhost:3000.*
 
+**Start the ML Python Microservice (from the `/ml_service` directory):**
+```bash
+cd ml_service
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 app.py
+```
+*The Flask server processing ML insights will run on http://localhost:5000.*
+
 ## 📂 Project Structure
 
 ```
@@ -88,10 +105,14 @@ mental-health-app/
 ├── client/                 # React Frontend application
 │   ├── public/             
 │   └── src/
-│       ├── components/     # Reusable UI components pages (Navbar, Dashboard, etc.)
+│       ├── components/     # Reusable UI components pages (Navbar, Dashboard, StressCheckup, etc.)
 │       └── App.js          # Main React Application
+├── ml_service/             # Python Flask Microservice 
+│   ├── app.py              # ML API Endpoint serving predictions
+│   ├── stress_model.pkl    # Serialized RandomForest classification model
+│   └── requirements.txt    # Python deps
 ├── models/                 # Mongoose Database Models
-├── routes/                 # Express API Routes (auth, mood, journal, ai, etc.)
+├── routes/                 # Express API Routes (auth, mood, journal, ai, stress, etc.)
 ├── middleware/             # Express Middlewares (auth verification)
 ├── server.js               # Backend Entry Point
 └── package.json            # Backend dependencies and scripts
