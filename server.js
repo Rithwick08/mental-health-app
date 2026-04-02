@@ -5,7 +5,6 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
-
 import authRoutes from "./routes/authRoutes.js";
 import moodRoutes from "./routes/moodRoutes.js";
 import journalRoutes from "./routes/journalRoutes.js";
@@ -14,9 +13,16 @@ import exerciseRoutes from "./routes/exerciseRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
 import conversationRoutes from "./routes/conversationRoutes.js";
 import stressRoutes from "./routes/stressRoutes.js";
+
 const app = express();
+
+// ✅ FIXED CORS
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
+
 app.use(express.json());
-app.use(cors({ origin: ["http://localhost:3000", "http://localhost:3001"] }));
 
 // Routes
 app.use("/api/ai", aiRoutes);
@@ -33,8 +39,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
     const PORT = process.env.PORT || 5000;
-    console.log("PORT from env:", process.env.PORT); // debug log
+    console.log("PORT from env:", process.env.PORT);
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
   .catch(err => console.error(err));
-  
