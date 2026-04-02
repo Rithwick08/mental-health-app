@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 const LeafIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }}>
@@ -40,9 +41,30 @@ const linkBase = {
 };
 
 export default function Navbar({ user, onLogout }) {
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
+
+  const themeToggleStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '6px',
+    padding: '0.35rem 0.75rem',
+    borderRadius: '50px',
+    border: '1.5px solid var(--sage-mist)',
+    background: isDark ? 'var(--sage-bg)' : 'var(--cream)',
+    color: 'var(--text-medium)',
+    cursor: 'pointer',
+    fontSize: '0.82rem',
+    fontWeight: 700,
+    fontFamily: "'Nunito', sans-serif",
+    letterSpacing: '0.02em',
+    transition: 'all 0.3s ease',
+    userSelect: 'none',
+  };
+
   return (
-    <nav style={navStyle}>
-      <div className="container-fluid px-4 d-flex align-items-center justify-content-between">
+    <nav className="navbar navbar-expand-lg" style={navStyle}>
+      <div className="container-fluid px-4">
         <NavLink to="/" style={brandStyle}>
           <LeafIcon /> MentiHaven
         </NavLink>
@@ -52,6 +74,9 @@ export default function Navbar({ user, onLogout }) {
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
           style={{ color: 'var(--sage)' }}
         >
           <span className="navbar-toggler-icon" />
@@ -68,7 +93,7 @@ export default function Navbar({ user, onLogout }) {
                   color: isActive ? 'var(--sage)' : 'var(--text-medium)',
                 })}
               >
-                🏡 Dashboard
+                Dashboard
               </NavLink>
               <NavLink
                 to="/journal"
@@ -78,7 +103,7 @@ export default function Navbar({ user, onLogout }) {
                   color: isActive ? 'var(--sage)' : 'var(--text-medium)',
                 })}
               >
-                📓 Journal
+                Journal
               </NavLink>
               <NavLink
                 to="/exercises"
@@ -88,10 +113,28 @@ export default function Navbar({ user, onLogout }) {
                   color: isActive ? 'var(--sage)' : 'var(--text-medium)',
                 })}
               >
-                🌿 Exercises
+                Exercises
+              </NavLink>
+              <NavLink
+                to="/stress-checkup"
+                style={({ isActive }) => ({
+                  ...linkBase,
+                  background: isActive ? 'var(--sage-bg)' : 'transparent',
+                  color: isActive ? 'var(--sage)' : 'var(--text-medium)',
+                })}
+              >
+                🧠 Stress Checkup
               </NavLink>
 
               <div style={{ borderLeft: '1px solid var(--sage-mist)', height: '24px', margin: '0 0.5rem' }} />
+
+              {/* Theme Toggle */}
+              <button onClick={toggleTheme} style={themeToggleStyle} title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+                <span style={{ fontSize: '1rem', lineHeight: 1 }}>{isDark ? '☀️' : '🌙'}</span>
+                <span>{isDark ? 'Light' : 'Dark'}</span>
+              </button>
+
+              <div style={{ borderLeft: '1px solid var(--sage-mist)', height: '24px', margin: '0 0.25rem' }} />
 
               <span style={{ fontSize: '0.88rem', color: 'var(--text-light)', fontWeight: 500 }}>
                 {user.name}
@@ -111,8 +154,13 @@ export default function Navbar({ user, onLogout }) {
               </button>
             </div>
           ) : (
-            <div className="ms-auto" style={{ color: 'var(--text-light)', fontSize: '0.9rem', fontStyle: 'italic' }}>
-              🌿 Your safe space for mental well-being
+            <div className="d-flex align-items-center ms-auto gap-2">
+              <span style={{ color: 'var(--text-light)', fontSize: '0.9rem', fontStyle: 'italic' }}>
+                🌿 Your safe space for mental well-being
+              </span>
+              <button onClick={toggleTheme} style={themeToggleStyle} title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+                <span style={{ fontSize: '1rem', lineHeight: 1 }}>{isDark ? '☀️' : '🌙'}</span>
+              </button>
             </div>
           )}
         </div>

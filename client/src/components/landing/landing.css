@@ -17,10 +17,11 @@
 }
 
 .mh-landing-nav.scrolled {
-  background: rgba(251, 247, 240, 0.92);
+  background: rgba(from var(--cream) r g b / 0.92);
+  background-color: color-mix(in srgb, var(--cream) 92%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(107, 143, 113, 0.15);
+  border-bottom: 1px solid var(--sage-mist);
   padding: 0.7rem 2rem;
 }
 
@@ -135,7 +136,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--cream) 0%, rgba(251, 247, 240, 0.4) 40%, transparent 100%);
+  background: linear-gradient(to right, var(--cream) 0%, color-mix(in srgb, var(--cream) 40%, transparent) 40%, transparent 100%);
   z-index: 2;
 }
 

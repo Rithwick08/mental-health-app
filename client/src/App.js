@@ -11,14 +11,29 @@ import Landing from "./components/landing/Landing";
 import QuoteBox from "./components/QuoteBox";
 import ExerciseList from "./components/ExerciseList";
 import AICompanion from "./components/AICompanion";
+import StressCheckup from "./components/StressCheckup";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./App.css";
 
 function AppContent() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem("mh_user");
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
   const location = useLocation();
+
+  function handleLogin(userData) {
+    localStorage.setItem("mh_user", JSON.stringify(userData));
+    setUser(userData);
+  }
 
   function handleLogout() {
     localStorage.removeItem("mh_token");
+    localStorage.removeItem("mh_user");
     setUser(null);
   }
 
@@ -40,7 +55,7 @@ function AppContent() {
               !user ? (
                 <div className="mh-auth-page">
                   <div className="mh-auth-card card">
-                    <LoginForm onLogin={setUser} />
+                    <LoginForm onLogin={handleLogin} />
                   </div>
                 </div>
               ) : <Navigate to="/dashboard" />
@@ -103,6 +118,11 @@ function AppContent() {
             path="/exercises"
             element={user ? <ExerciseList /> : <Navigate to="/" />}
           />
+
+          <Route
+            path="/stress-checkup"
+            element={user ? <StressCheckup /> : <Navigate to="/" />}
+          />
         </Routes>
       </div>
 
@@ -113,8 +133,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </ThemeProvider>
   );
 }

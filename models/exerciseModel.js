@@ -8,6 +8,9 @@ const exerciseSchema = new mongoose.Schema({
     enum: ["relaxation", "mindfulness", "focus"],
     required: true,
   },
+  steps: [{ type: String }],
+  duration: { type: Number, default: 5 }, // in minutes
+  benefits: [{ type: String }],
 });
 
 const Exercise = mongoose.model("Exercise", exerciseSchema);

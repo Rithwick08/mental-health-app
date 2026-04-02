@@ -60,6 +60,7 @@ export default function MoodTracker() {
               padding: '0.6rem 0.8rem', borderRadius: 'var(--radius-sm)',
               border: selected === m.value ? `2px solid var(--sage)` : '2px solid var(--sage-mist)',
               background: selected === m.value ? 'var(--sage-bg)' : 'var(--cream)',
+              boxShadow: selected === m.value ? '0 8px 24px rgba(134, 197, 158, 0.25)' : 'none',
               cursor: 'pointer', transition: 'all 0.2s ease',
               transform: selected === m.value ? 'scale(1.08)' : 'scale(1)',
             }}

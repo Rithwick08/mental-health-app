@@ -13,6 +13,7 @@ import quoteRoutes from "./routes/quoteRoutes.js";
 import exerciseRoutes from "./routes/exerciseRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
 import conversationRoutes from "./routes/conversationRoutes.js";
+import stressRoutes from "./routes/stressRoutes.js";
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: ["http://localhost:3000", "http://localhost:3001"] }));
@@ -25,6 +26,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/exercises", exerciseRoutes);
 app.use("/api/mood", moodRoutes);
 app.use("/api/quotes", quoteRoutes);
+app.use("/api/stress", stressRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)

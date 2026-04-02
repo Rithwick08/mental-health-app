@@ -56,13 +56,13 @@ export default function MoodChart() {
           <AreaChart data={moods} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
             <defs>
               <linearGradient id="moodGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#6B8F71" stopOpacity={0.25} />
+                <stop offset="5%" stopColor="#6B8F71" stopOpacity={0.3} />
                 <stop offset="95%" stopColor="#6B8F71" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(107,143,113,0.15)" vertical={false} />
-            <XAxis dataKey="date" tick={{ fill: '#8A9B8D', fontSize: 11, fontFamily: 'Nunito' }} axisLine={false} tickLine={false} />
-            <YAxis domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fill: '#8A9B8D', fontSize: 11 }} axisLine={false} tickLine={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--sage-mist)" vertical={false} />
+            <XAxis dataKey="date" tick={{ fill: 'var(--text-light)', fontSize: 11, fontFamily: 'Nunito' }} axisLine={false} tickLine={false} />
+            <YAxis domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} tick={{ fill: 'var(--text-light)', fontSize: 11 }} axisLine={false} tickLine={false} />
             <Tooltip content={<CustomTooltip />} />
             <Area type="monotone" dataKey="mood" stroke="var(--sage)" strokeWidth={2.5} fill="url(#moodGrad)" dot={{ fill: 'var(--sage)', r: 4, strokeWidth: 0 }} activeDot={{ r: 6, fill: 'var(--forest)' }} />
           </AreaChart>
