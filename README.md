@@ -63,13 +63,12 @@ cd ..
 Create a `.env` file in the root directory and add the following keys:
 ```env
 # Server
-PORT=4000
-MONGO_URI=mongodb://127.0.0.1:27017/mentalhealth
-JWT_SECRET=your_jwt_secret_key
-
+PORT
+MONGO_URI
+JWT_SECRET
 # AI Integration APIs
 GROQ_API_KEY=your_groq_api_key
-# OPENAI_API_KEY=your_openai_api_key
+
 ```
 
 ### 5. Running the Application
@@ -79,7 +78,7 @@ You need to start both the backend server and the frontend React application.
 ```bash
 npm run dev
 ```
-*The backend API will run on http://localhost:4000.*
+*The backend API will run on http://localhost:.*
 
 **Start the Frontend (from the `/client` directory):**
 ```bash
